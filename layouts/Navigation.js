@@ -1,40 +1,16 @@
 import Image from "next/image"
 import logo from "../public/logo.png"
 import Icon from "../utilities/Icon"
-
-import { useState } from "react"
-
-let activeUser = "admin"
-
-const users = {
-	admin: [
-		{ name: "Academics", icon: "account_balance" },
-		{ name: "Curriculum", icon: "library_books" }, 
-		{ name: "Users", icon: "group" }, 
-		{ name: "Students", icon: "school" }, 
-		{ name: "Faculty", icon: "engineering" }, 
-		{ name: "Feedback", icon: "star" },
-		{ name: "Settings", icon: "settings" }
-	],
-	hod: [
-		{ name: "Users", icon: "group" }, 
-		{ name: "Students", icon: "school" }, 
-		{ name: "Faculty", icon: "engineering" }, 
-	],
-	pc: [],
-	ttc: [],
-	fa: [],
-	ci: [],
-	student: []
-}
+import users from "../utilities/users"
+import Link from "next/link"
 
 const Title = () => {
     return ( 
-        <div className="border-b border-r flex place-content-center">
-            <div className="w-1/4 grid place-content-center">
+        <div className="border-r flex place-content-center">
+            <div className="w-1/3 grid place-content-center">
                 <Image src={logo} width={35} height={35} alt="GCT"/>
             </div>
-            <div className="text-xl font-black grid items-center w-3/4">
+            <div className="text-xl font-black grid items-center w-2/3">
                 <span>GCTERP</span>
             </div>
         </div>
@@ -44,51 +20,60 @@ const Title = () => {
 const Credits = () => {
     return ( 
         <div className="border-r cursor-pointer flex place-content-center">
-            <div className="text-slate-400 w-1/4 grid place-content-center">
+            <div className="text-slate-400 w-1/3 grid place-content-center">
                 <Icon name="groups"/>
             </div>
-            <div className="text-slate-400 grid items-center w-3/4">
+            <div className="text-slate-400 grid items-center w-2/3">
                 <span>By Students</span>
             </div>
         </div>
     );
 }
 
+const Dummy = () => {
+    return <div className="border-r"></div>
+}
+
 const User = () => {
     return ( 
-        <div className="row-span-2 border-r text-center p-3 align-middle">
-            
+        <div className="border-b border-r flex place-content-center pb-1">
+            <div className="w-1/3 grid place-content-center">
+                <Icon name="account_circle" outline/>
+            </div>
+            <div className="grid items-center w-2/3">
+                <div className="text-sm font-bold">Vishnukumar D</div>
+                <div className="text-sm">1918148</div>
+            </div>
         </div>
     );
 }
 
-const NavItem = ({ name, icon, active, setActive }) => {
+const NavItem = ({ name, icon, route, active }) => {
 
 	return (
-		<div className={`py-2 cursor-pointer flex place-content-center ${active == name && "bg-blue-50 border-r-4 border-blue-400"}`} onClick={() => setActive(name)}>
-			<div className={`w-1/4 grid place-content-center ${active == name && "text-blue-400"}`}>
+		<Link href={"/" + active[1] + "/" + route} className={`py-2 cursor-pointer flex place-content-center ${active[2] == route && "bg-blue-50 border-r-4 border-blue-400"}`}>
+			<div className={`w-1/3 grid place-content-center ${active[2] == route && "text-blue-400"}`}>
 				<Icon name={icon}/>
 			</div>
-			<div className={`grid items-center w-3/4 ${active == name && "font-semibold text-blue-400"}`}>
+			<div className={`grid items-center w-2/3 ${active[2] == route && "font-semibold text-blue-400"}`}>
 				<span>{name}</span>
 			</div>
-		</div>
+		</Link>
 	)
 }
 
-const Navigation = () => {
-
-	const [ active, setActive ] = useState(users[activeUser][0].name)
+const Navigation = ({ active }) => {
 
     return (<>        
         <Title/>
+        <Dummy/>
         <User/>
-        <div className="row-span-12 border-b border-r">
-			{
-				users[activeUser].map(role => {
-					return <NavItem name={role.name} icon={role.icon} active={active} setActive={setActive}/>
-				})
-			}
+        <div className="row-span-12 pt-5 border-b border-r">
+			{   
+                active[2] && users[active[1]].map(action => (
+                    <NavItem key={action.key} name={action.name} icon={action.icon} route={action.route} active={active}/>
+                ))
+            }   
         </div>
         <Credits/>
     </>)

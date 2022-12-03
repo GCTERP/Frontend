@@ -1,16 +1,37 @@
-import { useRouter } from "next/router";
+import users from "../utilities/users"
+import Link from "next/link"
+import { useEffect } from "react"
 
-const Submenu = () => {
+const Title = ({name}) => {
 
-    const router = useRouter()
+    return <div className="text-xl font-bold p-3 pl-4">{name}</div>
+}
 
-    console.log(router.asPath)
+const Item = ({ name, route, user, menu, submenu }) => {
+
+    return (
+        <Link href={"/" + user + "/" + menu + "/" + route} 
+            className={`text-l p-3 px-10 ${submenu == route && "border-b-2 border-blue-400 font-bold text-black"}`}>
+            {name}
+        </Link>
+    )
+}
+
+const Submenu = ({ active }) => {
+
+    const user = active[1], menu = active[2], submenu = active[3]
+
+    const content = users[user] && users[user].filter(item => item.route == menu)[0]
+
+    const status = content && content.menu && content.menu.length > 0
 
     return (  
-        <div className="col-span-6 border-b">
-            <div className="text-xl font-bold p-2 pl-4">
-                Academics
-            </div>
+        <div className={`col-span-6 ${status ? "border-b" : ""} flex`}>
+           {
+                status ? content.menu.map(item => (
+                    <Item key={item.key} name={item.name} route={item.route} user={user} menu={menu} submenu={submenu ?? ""}/>
+                )) : <Title name={content && content.name}/>
+           }
         </div>
     );
 }
