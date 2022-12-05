@@ -1,5 +1,5 @@
 const Roles = () => {
-    return <div>You are inside Roles</div>
+    return <div>You are inside ADMIN Roles</div>
 }
 
 export default Roles

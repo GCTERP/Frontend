@@ -1,5 +1,5 @@
 const Feedback = () => {
-    return <div>You are inside Feedback</div>
+    return <div>You are inside ADMIN Feedback</div>
 }
 
 export default Feedback

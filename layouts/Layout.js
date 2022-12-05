@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
+
 import Navigation from "./Navigation"
 import Submenu from "./Submenu"
 import Header from "./Header"
-
-import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
 
 const Layout = ({ children }) => {
 	

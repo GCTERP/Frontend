@@ -1,10 +1,9 @@
 const Users = () => {
-    
     return (  
         <div>
-            Welcome to Users
+            You are inside ADMIN Users
         </div>
-    );
+    )
 }
  
 export default Users;

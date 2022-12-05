@@ -1,7 +1,7 @@
 const Students = () => {
     return (  
         <div>
-            Welcome to Students
+            You are inside ADMIN Students
         </div>
     );
 }

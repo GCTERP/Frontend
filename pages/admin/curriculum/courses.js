@@ -1,9 +1,9 @@
 const Courses = () => {
     return (  
         <div>
-            Inside Courses
+            You are inside ADMIN courses
         </div>
-    );
+    )
 }
  
 export default Courses;

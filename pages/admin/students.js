@@ -1,9 +1,9 @@
 const Students = () => {
     return (  
         <div>
-            Students Component
+            You are inside ADMIN Students
         </div>
-    );
+    )
 }
  
 export default Students;

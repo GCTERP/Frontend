@@ -1,5 +1,5 @@
 const Result = () => {
-    return <div>You are inside Result</div>
+    return <div>You are inside ADMIN Result</div>
 }
 
 export default Result

@@ -10,7 +10,7 @@ export const AuthContext = createContext(null)
 
 const App = ({ Component, pageProps }) => {
 
-	const [ auth, setAuth ] = useState({ status: true, student: false, role: "admin" })
+	const [ auth, setAuth ] = useState({ status: true, role: "admin" })
 
 	const Auth = useMemo(() => ({ auth, setAuth }), [auth, setAuth])
 

@@ -1,17 +1,10 @@
-import users from "../utilities/users"
 import Link from "next/link"
-import { useEffect } from "react"
 
-const Title = ({name}) => {
-
-    return <div className="text-xl font-bold p-3 pl-4">{name}</div>
-}
+import users from "../utilities/users"
 
 const Item = ({ name, route, user, menu, submenu }) => {
-
     return (
-        <Link href={"/" + user + "/" + menu + "/" + route} 
-            className={`text-l p-3 px-10 ${submenu == route && "border-b-2 border-blue-400 font-bold text-black"}`}>
+        <Link href={"/" + user + "/" + menu + "/" + route} className={`text-l p-3 px-10 ${submenu == route && "border-b-2 border-blue-400 font-bold text-black"}`}>
             {name}
         </Link>
     )
@@ -27,13 +20,13 @@ const Submenu = ({ active }) => {
 
     return (  
         <div className={`col-span-6 ${status ? "border-b" : ""} flex`}>
-           {
-                status ? content.menu.map(item => (
-                    <Item key={item.key} name={item.name} route={item.route} user={user} menu={menu} submenu={submenu ?? ""}/>
-                )) : <Title name={content && content.name}/>
-           }
+        {
+            status ? content.menu.map(item => (
+                <Item key={item.key} name={item.name} route={item.route} user={user} menu={menu} submenu={submenu ?? ""}/>
+            )) : <div className="text-l font-bold p-4">{ content && content.name }</div>
+        }
         </div>
-    );
+    )
 }
  
 export default Submenu;

@@ -1,7 +1,7 @@
 const Faculty = () => {
     return (  
         <div>
-            Inside Faculty
+            You are inside ADMIN faculty
         </div>
     );
 }

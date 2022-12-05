@@ -5,11 +5,9 @@ const Admin = () => {
 
     const router = useRouter()
 
-    useEffect(() => {
-        router.push('/admin/requests')
-    }, [])
+    useEffect(() => { router.push('/admin/requests') }, [])
 
-    return null;
+    return null
 }
  
 export default Admin;

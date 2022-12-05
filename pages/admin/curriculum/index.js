@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 const Curriculum = () => {
 
@@ -7,7 +7,7 @@ const Curriculum = () => {
 
     useEffect(() => { router.push('/admin/curriculum/courses') }, [])
 
-    return null;
+    return null
 }
  
 export default Curriculum;

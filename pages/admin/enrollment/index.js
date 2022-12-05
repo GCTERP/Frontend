@@ -1,5 +1,5 @@
 const Enrollment = () => {
-    return <div>You are inside Enrollment</div>
+    return <div>You are inside ADMIN Enrollment</div>
 }
 
 export default Enrollment

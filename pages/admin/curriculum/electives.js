@@ -1,9 +1,9 @@
 const Electives = () => {
     return (  
         <div>
-            Inside Electives
+            You are inside ADMIN courses
         </div>
-    );
+    )
 }
  
 export default Electives;

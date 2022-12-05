@@ -1,5 +1,5 @@
 const Details = () => {
-    return <div>You are inside Details</div>
+    return <div>You are inside ADMIN Details</div>
 }
 
 export default Details

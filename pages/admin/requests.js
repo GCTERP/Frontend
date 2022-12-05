@@ -1,5 +1,5 @@
 const Requests = () => {
-    return <div>You are inside Requests</div>
+    return <div>You are inside ADMIN Requests</div>
 }
 
 export default Requests
