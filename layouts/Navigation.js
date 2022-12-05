@@ -1,9 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import users from "../utilities/users"
+import routes from "../utilities/routes"
 import logo from "../public/logo.png"
-
 import Icon from "../utilities/Icon"
 
 const Title = () => {
@@ -33,14 +32,21 @@ const Credits = () => {
 }
 
 const User = ({role}) => {
+
+    const roles = { admin: "Admin", cfa: "Chief Faculty Advisor", hod: "Head of the Department", pc: "Programme Coordinator", ttc: "Timetable Coordinator", fa: "Faculty Advisor", ci: "Course Incharge", student: "Student" }
+
     return ( 
-        <div className="border-b border-r flex place-content-center pb-1">
+        <div className="flex place-content-center group border-b border-r cursor-pointer pb-1">
             <div className="w-1/3 grid place-content-center">
                 <Icon name="account_circle" outline/>
             </div>
             <div className="grid items-center w-2/3">
-                <div className="text-sm font-bold">Vishnukumar D</div>
-                <div className="text-sm">{role}</div>
+                <div className="text-xs font-bold group-hover:text-blue-500">
+                    Vishal Pranav RB
+                </div>
+                <div className={`text-${roles[role] && (roles[role].length > 20 ? '[11px]' : 'xs')}`}>
+                    {roles[role]}
+                </div>
             </div>
         </div>
     )
@@ -48,11 +54,11 @@ const User = ({role}) => {
 
 const NavItem = ({ name, icon, route, active }) => {
 	return (
-		<Link href={"/" + active[1] + "/" + route} className={`flex place-content-center ${active[2] == route && "bg-blue-50 border-r-2 border-blue-400"} py-2 cursor-pointer`}>
-			<div className={`grid place-content-center w-1/3 ${active[2] == route && "text-blue-400"}`}>
-				<Icon name={icon}/>
+		<Link href={"/" + active[1] + "/" + route} className={`flex place-content-center group ${active[2] == route && "bg-blue-50 border-r-2 border-blue-500"} py-2 cursor-pointer`}>
+			<div className={`grid place-content-center w-1/3 group-hover:text-blue-500 ${active[2] == route && "text-blue-500"}`}>
+				<Icon name={icon} fill={active[2] == route}/>
 			</div>
-			<div className={`grid items-center w-2/3 ${active[2] == route && "text-blue-400"}`}>
+			<div className={`grid items-center w-2/3 group-hover:text-blue-500 ${active[2] == route && "text-blue-500"}`}>
 				<span>{name}</span>
 			</div>
 		</Link>
@@ -66,7 +72,7 @@ const Navigation = ({ active }) => {
         <User role={active[1]}/>
         <div className="row-span-12 pt-5 border-b border-r">
         {   
-            active[2] && users[active[1]].map(action => (
+            active[2] && routes[active[1]].map(action => (
                 <NavItem key={action.key} name={action.name} icon={action.icon} route={action.route} active={active}/>
             ))
         }   

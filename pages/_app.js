@@ -1,4 +1,5 @@
 import { createContext, useMemo, useState } from "react"
+import { useRouter } from "next/router"
 
 import "../styles/index.css"
 import "@fontsource/montserrat"
@@ -10,7 +11,11 @@ export const AuthContext = createContext(null)
 
 const App = ({ Component, pageProps }) => {
 
-	const [ auth, setAuth ] = useState({ status: true, role: "admin" })
+	const router = useRouter()
+
+	console.log(router.asPath, router.basePath)
+
+	const [ auth, setAuth ] = useState({ status: false, role: "admin" })
 
 	const Auth = useMemo(() => ({ auth, setAuth }), [auth, setAuth])
 
