@@ -8,10 +8,14 @@ const Home = () => {
 	const router = useRouter()
 
 	const { auth } = useContext(AuthContext)
+	
+	console.log(router.pathname)
 
-	// useEffect(() => { router.push("/" + (auth.student ? "student/attendance" : auth.role + "/requests")) }, [])
+	useEffect(() => { 
+		
+		auth.status ? router.push("/" + auth.role) : router.push('/auth')
 
-	useEffect(() => { router.push("/" + auth.role + "/") }, [])
+	}, [])
 
 	return null
 }

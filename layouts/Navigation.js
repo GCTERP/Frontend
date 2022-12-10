@@ -65,7 +65,7 @@ const NavItem = ({ name, icon, route, active }) => {
 	)
 }
 
-const Navigation = ({ active }) => {
+const Navigation = ({ active, profile }) => {
     return (<>        
         <Title/>
         <div className="border-r"></div>

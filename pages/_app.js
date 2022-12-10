@@ -1,11 +1,10 @@
-import { createContext, useMemo, useState } from "react"
+import { createContext, useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/router"
 
 import "../styles/index.css"
 import "@fontsource/montserrat"
 
 import Layout from "../layouts/Layout"
-import Login from "../auth/Login"
 
 export const AuthContext = createContext(null)
 
@@ -13,19 +12,29 @@ const App = ({ Component, pageProps }) => {
 
 	const router = useRouter()
 
-	console.log(router.asPath, router.basePath)
+	console.log(router.pathname)
 
-	const [ auth, setAuth ] = useState({ status: false, role: "admin" })
+	const [ auth, setAuth ] = useState({ status: true, role: "admin" })
 
 	const Auth = useMemo(() => ({ auth, setAuth }), [auth, setAuth])
 
+	useEffect(() => { if(!auth.status) router.push('/auth') }, [])
+
+	const Template = ({ path, props }) => {
+
+		if(path.startsWith('/auth'))
+			return <Component {...props}/>
+		
+		return (
+			<Layout profile={path.endsWith('/profile')}>
+				<Component {...props}/>
+			</Layout>
+		)
+	}
+
   	return ( 
     	<AuthContext.Provider value={Auth}>
-			{	auth.status ?
-				<Layout>
-					<Component {...pageProps}/>
-				</Layout> : <Login />
-			}
+			<Template path={router.pathname} props={pageProps}/>
     	</AuthContext.Provider>
   	)
 }

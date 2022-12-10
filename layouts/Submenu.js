@@ -11,7 +11,7 @@ const Item = ({ name, route, user, menu, submenu }) => {
     )
 }
 
-const Submenu = ({ active }) => {
+const Submenu = ({ active, profile }) => {
 
     const user = active[1], menu = active[2], submenu = active[3]
 
@@ -27,7 +27,7 @@ const Submenu = ({ active }) => {
         {
             status ? content.menu.map(item => (
                 <Item key={item.key} name={item.name} route={item.route} user={user} menu={menu} submenu={submenu ?? ""}/>
-            )) : <div className="text-l font-bold p-4">{ content && content.name }</div>
+            )) : <div className="text-l font-bold p-4">{ profile ? "Profile" : content && content.name }</div>
         }
         </div>
     )

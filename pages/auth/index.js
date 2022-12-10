@@ -1,4 +1,19 @@
+import { useEffect, useContext } from "react"
+import { useRouter } from "next/router"
+import { AuthContext } from "../_app"
+
 const Login = () => {
+
+    const router = useRouter()
+
+    const { auth } = useContext(AuthContext)
+
+    useEffect(() => {
+
+        if(auth.status)   router.push('/' + auth.role)
+
+    }, [])
+
     return (  
         <div className="flex h-screen">
             <div className="m-auto p-5 w-1/4 border rounded-lg shadow-md">
