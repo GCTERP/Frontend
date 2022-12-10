@@ -14,7 +14,7 @@ const App = ({ Component, pageProps }) => {
 
 	console.log(router.pathname)
 
-	const [ auth, setAuth ] = useState({ status: true, role: "admin" })
+	const [ auth, setAuth ] = useState({ status: false, role: "admin" })
 
 	const Auth = useMemo(() => ({ auth, setAuth }), [auth, setAuth])
 
